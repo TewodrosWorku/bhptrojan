@@ -1,6 +1,7 @@
 import os
 
 def run(**args):
-    print("[*] In environment module.")
-    return os.environ 
+    print("[*] In dirlister module.")
+    files = os.listdir(".")
+    return str(files) 
     
