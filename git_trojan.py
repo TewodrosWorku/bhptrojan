@@ -50,7 +50,7 @@ def get_file_contents(dirname,module_name,repo):
 
     
 class Trojan:
-    def __init__(self) -> None:
+    def __init__(self,id):
         self.id = id
         self.config_file =f'{id}.json'
         self.data_path = f'data/{id}'
